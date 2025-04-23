@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,18 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Custom colors for our cyberpunk esports theme
+				cyber: {
+					primary: '#9b87f5', // Primary purple
+					secondary: '#7E69AB', // Secondary purple
+					tertiary: '#6E59A5', // Tertiary purple
+					accent: '#F97316', // Orange accent
+					glow: '#8B5CF6', // Neon purple for glow effects
+					blue: '#0EA5E9', // Bright blue accent
+					dark: '#1A1F2C', // Dark background
+					darker: '#151823', // Darker background
+					black: '#0F1218', // Near black
 				}
 			},
 			borderRadius: {
@@ -84,11 +97,36 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-glow': {
+					'0%, 100%': { 
+						boxShadow: '0 0 5px rgba(139, 92, 246, 0.4), 0 0 10px rgba(139, 92, 246, 0.2)' 
+					},
+					'50%': { 
+						boxShadow: '0 0 15px rgba(139, 92, 246, 0.6), 0 0 20px rgba(139, 92, 246, 0.3)' 
+					},
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' },
+				},
+				'background-shine': {
+					'from': { backgroundPosition: '0 0' },
+					'to': { backgroundPosition: '-200% 0' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-glow': 'pulse-glow 2s infinite',
+				'float': 'float 3s ease-in-out infinite',
+				'background-shine': 'background-shine 2s linear infinite'
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'cyber-grid': `linear-gradient(to right, rgba(155, 135, 245, 0.1) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(155, 135, 245, 0.1) 1px, transparent 1px)`,
+				'glow-conic': 'conic-gradient(from 180deg at 50% 50%, #9b87f5 0deg, #0EA5E9 180deg, #F97316 360deg)',
 			}
 		}
 	},
