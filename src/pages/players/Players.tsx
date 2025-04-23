@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Filter, Search } from 'lucide-react';
 import { toast } from 'sonner';
 import PlayerCard from './PlayerCard';
+import { Button } from '@/components/ui/button';
 
 interface Player {
   id: string;
