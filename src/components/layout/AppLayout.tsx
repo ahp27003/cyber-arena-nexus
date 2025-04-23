@@ -34,11 +34,10 @@ const AppLayout = () => {
   
   // Redirect to login if not authenticated
   useEffect(() => {
-    const publicRoutes = ['/login', '/register', '/forgot-password'];
-    if (!isAuthenticated && !publicRoutes.includes(location.pathname)) {
+    if (!isAuthenticated) {
       navigate('/login');
     }
-  }, [isAuthenticated, location.pathname, navigate]);
+  }, [isAuthenticated, navigate]);
   
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const toggleNotifications = () => setShowNotifications(!showNotifications);
