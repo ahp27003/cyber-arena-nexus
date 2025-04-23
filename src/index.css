@@ -1,174 +1,66 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
 
-@layer base {
-  :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 258 73% 74%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 24 100% 50%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 258 73% 74%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-
-  .light {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 258 73% 74%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 24 100% 50%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 258 73% 74%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+  to {
+    transform: rotate(360deg);
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
   }
+}
 
-  body {
-    @apply bg-cyber-darker text-foreground antialiased;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239b87f5' fill-opacity='0.05'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
+.card {
+  padding: 2em;
+}
 
-  /* Custom component classes */
-  .cyber-panel {
-    @apply relative bg-cyber-dark/80 border border-cyber-primary/20 rounded-md overflow-hidden;
-    box-shadow: 0 0 10px rgba(155, 135, 245, 0.1);
-  }
+.read-the-docs {
+  color: #888;
+}
 
-  .cyber-panel::before {
-    @apply content-[''] absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyber-primary/50 to-transparent;
-  }
+/* Custom cyber styles for homepage */
+.cyber-card {
+  @apply relative bg-cyber-dark/80 backdrop-blur-sm border border-cyber-primary/20 rounded-lg overflow-hidden;
+  box-shadow: 0 0 20px rgba(155, 135, 245, 0.1);
+}
 
-  .cyber-panel::after {
-    @apply content-[''] absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyber-primary/30 to-transparent;
-  }
+.cyber-grid-bg {
+  background-image: linear-gradient(to right, rgba(155, 135, 245, 0.1) 1px, transparent 1px),
+                   linear-gradient(to bottom, rgba(155, 135, 245, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
 
-  .cyber-button {
-    @apply relative overflow-hidden bg-cyber-primary/20 text-white border border-cyber-primary/30 
-           rounded px-4 py-2 transition-all duration-300
-           hover:bg-cyber-primary/30 hover:border-cyber-primary/50;
-    box-shadow: 0 0 10px rgba(155, 135, 245, 0.15);
-  }
+.neon-text {
+  text-shadow: 0 0 5px rgba(155, 135, 245, 0.8);
+}
 
-  .cyber-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(155, 135, 245, 0.2),
-      transparent
-    );
-    transition: 0.5s;
-  }
+.cyber-input {
+  @apply bg-cyber-dark/90 border border-cyber-primary/30 rounded-md px-4 py-2 text-white w-full focus:border-cyber-primary/70 focus:outline-none focus:ring-1 focus:ring-cyber-primary/50 transition-all;
+}
 
-  .cyber-button:hover::before {
-    left: 100%;
-  }
-
-  .cyber-input {
-    @apply bg-cyber-dark border border-cyber-primary/20 text-white rounded-md px-4 py-2
-           focus:border-cyber-primary/50 focus:ring-1 focus:ring-cyber-primary/30 focus:outline-none
-           placeholder:text-white/30;
-  }
-
-  .cyber-card {
-    @apply bg-gradient-to-br from-cyber-dark/90 to-cyber-darker border border-cyber-primary/20 rounded-lg p-5 relative overflow-hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  }
-
-  .cyber-card::before {
-    @apply content-[''] absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyber-primary/50 to-transparent;
-  }
-
-  .neon-text {
-    @apply font-bold;
-    text-shadow: 0 0 5px rgba(155, 135, 245, 0.5), 0 0 10px rgba(155, 135, 245, 0.3);
-  }
-
-  .neon-border {
-    box-shadow: 0 0 5px rgba(155, 135, 245, 0.3), 0 0 10px rgba(155, 135, 245, 0.2);
-  }
-
-  .cyber-grid-bg {
-    background-size: 30px 30px;
-    @apply bg-cyber-grid;
-  }
-
-  .glass-effect {
-    @apply backdrop-blur-md bg-white/5;
-  }
-
-  .hexagon-pattern {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z' fill='%239C92AC' fill-opacity='0.03' fill-rule='nonzero'/%3E%3C/g%3E%3C/svg%3E");
-  }
+.cyber-button {
+  @apply relative bg-cyber-primary text-white font-medium rounded-md overflow-hidden transition-all hover:bg-cyber-primary/90 focus:outline-none focus:ring-2 focus:ring-cyber-primary/50 focus:ring-offset-2 focus:ring-offset-cyber-darker;
 }
