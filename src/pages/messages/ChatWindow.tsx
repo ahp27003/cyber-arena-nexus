@@ -7,7 +7,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 const MOCK_MESSAGES = [
   {
     id: '1',
-    content: 'Hey! I saw your profile and I think we'd make a good team.',
+    content: "Hey! I saw your profile and I think we'd make a good team.",
     timestamp: '10:20 AM',
     senderId: 'current-user'
   },
@@ -19,19 +19,19 @@ const MOCK_MESSAGES = [
   },
   {
     id: '3',
-    content: 'I'm Diamond 2 right now. Been looking for a consistent duo partner to grind with.',
+    content: "I'm Diamond 2 right now. Been looking for a consistent duo partner to grind with.",
     timestamp: '10:25 AM',
     senderId: 'current-user'
   },
   {
     id: '4',
-    content: 'That's perfect! I'm Diamond 3. What role do you main?',
+    content: "That's perfect! I'm Diamond 3. What role do you main?",
     timestamp: '10:27 AM',
     senderId: '101'
   },
   {
     id: '5',
-    content: 'I'm a support main. You?',
+    content: "I'm a support main. You?",
     timestamp: '10:29 AM',
     senderId: 'current-user'
   },
