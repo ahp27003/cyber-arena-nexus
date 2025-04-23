@@ -62,7 +62,20 @@ This project is built with:
 
 ## How can I deploy this project?
 
+### Option 1: Deploy with Lovable
 Simply open [Lovable](https://lovable.dev/projects/ca35aa26-c2c4-4f9b-bb2e-2a1e53569a12) and click on Share -> Publish.
+
+### Option 2: Deploy to Render.com
+This project has been configured for deployment on Render.com:
+
+1. Create a new account or log in to your existing Render account
+2. Create a new "Static Site" from your GitHub repository
+3. Use the following settings:
+   - **Build Command**: `npm install && npm run build`
+   - **Publish Directory**: `dist`
+4. Click "Create Static Site"
+
+The application includes a `render.yaml` configuration file that will automatically configure your deployment when using Render's Blueprint deployment feature.
 
 ## Can I connect a custom domain to my Lovable project?
 

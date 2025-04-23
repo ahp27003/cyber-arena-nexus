@@ -1,7 +1,8 @@
 
 import { useState, useRef, useEffect } from 'react';
-import { SendHorizontal, Smile, ArrowLeft } from 'lucide-react';
+import { SendHorizontal, Smile, ArrowLeft, Loader2 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { generateAIResponse, ConversationMessage } from '@/lib/gemini-ai';
 
 // Mock messages data
 const MOCK_MESSAGES = [
@@ -77,8 +78,13 @@ interface ChatWindowProps {
 const ChatWindow = ({ conversation, onSendMessage, onBack }: ChatWindowProps) => {
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState<Message[]>(MOCK_MESSAGES);
+  const [isAiResponding, setIsAiResponding] = useState(false);
+  const [aiError, setAiError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  
+  // Store conversation history for context
+  const [conversationHistory, setConversationHistory] = useState<ConversationMessage[]>([]);
   
   useEffect(() => {
     scrollToBottom();
@@ -88,20 +94,53 @@ const ChatWindow = ({ conversation, onSendMessage, onBack }: ChatWindowProps) =>
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
   
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
     
-    // In a real app, we'd send this to the API and wait for confirmation
-    const newMessage: Message = {
+    // Create and add the user message
+    const userMessage: Message = {
       id: Date.now().toString(),
       content: inputValue,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       senderId: 'current-user'
     };
     
-    setMessages([...messages, newMessage]);
+    // Update the UI with the user's message
+    setMessages(prevMessages => [...prevMessages, userMessage]);
     onSendMessage(inputValue);
     setInputValue('');
+    
+    // Update conversation history for context
+    const updatedHistory = [...conversationHistory, { role: 'user' as const, content: inputValue }];
+    setConversationHistory(updatedHistory);
+    
+    // Show AI is responding
+    setIsAiResponding(true);
+    setAiError(null);
+    
+    try {
+      // Generate AI response
+      const aiResponseText = await generateAIResponse(inputValue, updatedHistory);
+      
+      // Add AI response to conversation history
+      setConversationHistory([...updatedHistory, { role: 'model' as const, content: aiResponseText }]);
+      
+      // Create and add the AI response message
+      const aiMessage: Message = {
+        id: Date.now().toString(),
+        content: aiResponseText,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        senderId: conversation.user.id
+      };
+      
+      // Update the UI with the AI's response
+      setMessages(prevMessages => [...prevMessages, aiMessage]);
+    } catch (error) {
+      console.error('Error getting AI response:', error);
+      setAiError('Failed to get response. Please try again.');
+    } finally {
+      setIsAiResponding(false);
+    }
   };
   
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -162,6 +201,32 @@ const ChatWindow = ({ conversation, onSendMessage, onBack }: ChatWindowProps) =>
               </div>
             );
           })}
+          
+          {/* AI is typing indicator */}
+          {isAiResponding && (
+            <div className="flex justify-start">
+              <div className="max-w-[75%] order-1">
+                <div className="rounded-t-lg rounded-br-lg bg-cyber-blue/10 border border-cyber-blue/10 p-3">
+                  <div className="flex items-center space-x-2">
+                    <Loader2 className="h-4 w-4 text-cyber-blue animate-spin" />
+                    <p className="text-white/70 text-sm">Typing...</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* Error message */}
+          {aiError && (
+            <div className="flex justify-center">
+              <div className="max-w-[75%]">
+                <div className="rounded-lg bg-red-500/20 border border-red-500/20 p-2">
+                  <p className="text-red-400 text-sm">{aiError}</p>
+                </div>
+              </div>
+            </div>
+          )}
+          
           <div ref={messagesEndRef} />
         </div>
       </div>
@@ -181,23 +246,35 @@ const ChatWindow = ({ conversation, onSendMessage, onBack }: ChatWindowProps) =>
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyPress}
-              placeholder="Type a message..."
+              placeholder={isAiResponding ? "AI is responding..." : "Type a message..."}
               className="cyber-input w-full py-2 min-h-[44px] max-h-24 resize-none"
               rows={1}
+              disabled={isAiResponding}
             />
           </div>
           
           <button
             onClick={handleSendMessage}
-            disabled={!inputValue.trim()}
+            disabled={!inputValue.trim() || isAiResponding}
             className={`p-2 rounded-full ${
-              inputValue.trim() 
+              inputValue.trim() && !isAiResponding
                 ? 'bg-cyber-primary text-white hover:bg-cyber-primary/80' 
                 : 'bg-cyber-primary/20 text-white/50 cursor-not-allowed'
             }`}
           >
-            <SendHorizontal className="h-5 w-5" />
+            {isAiResponding ? (
+              <Loader2 className="h-5 w-5 animate-spin" />
+            ) : (
+              <SendHorizontal className="h-5 w-5" />
+            )}
           </button>
+        </div>
+        
+        {/* AI-powered assistant hint */}
+        <div className="mt-2 text-center">
+          <p className="text-xs text-white/40">
+            Powered by AI assistant • Responses may not reflect real player communication
+          </p>
         </div>
       </div>
     </div>
