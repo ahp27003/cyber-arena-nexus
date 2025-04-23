@@ -20,7 +20,6 @@ import ProfileSetup from "./pages/profile/ProfileSetup";
 import Players from "./pages/players/Players";
 import Messages from "./pages/messages/Messages";
 import Settings from "./pages/settings/Settings";
-import HomePage from "./pages/HomePage";
 
 // Other
 import NotFound from "./pages/NotFound";
@@ -34,9 +33,6 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          {/* Home Page (Public) */}
-          <Route path="/" element={<HomePage />} />
-          
           {/* Auth Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -44,6 +40,7 @@ const App = () => (
           
           {/* App Routes */}
           <Route path="/" element={<AppLayout />}>
+            <Route index element={<Navigate to="/profile" replace />} />
             <Route path="profile" element={<Profile />} />
             <Route path="profile/setup" element={<ProfileSetup />} />
             <Route path="players" element={<Players />} />

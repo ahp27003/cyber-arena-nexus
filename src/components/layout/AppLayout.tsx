@@ -32,14 +32,13 @@ const AppLayout = () => {
   // Check if the user is authenticated
   const isAuthenticated = localStorage.getItem('authToken') !== null;
   
-  // Redirect to login if not authenticated and accessing a protected route
+  // Redirect to login if not authenticated
   useEffect(() => {
-    // We only redirect if we're in a protected route (which is any route within AppLayout)
-    // The home page and auth pages are handled separately in App.tsx
-    if (!isAuthenticated) {
+    const publicRoutes = ['/login', '/register', '/forgot-password'];
+    if (!isAuthenticated && !publicRoutes.includes(location.pathname)) {
       navigate('/login');
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, location.pathname, navigate]);
   
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const toggleNotifications = () => setShowNotifications(!showNotifications);
