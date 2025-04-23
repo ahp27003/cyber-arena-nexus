@@ -4,8 +4,22 @@ import { Filter, Search } from 'lucide-react';
 import { toast } from 'sonner';
 import PlayerCard from './PlayerCard';
 
+// Define the player interface with matchScore property
+interface Player {
+  id: string;
+  gamerTag: string;
+  game: string;
+  rank: string;
+  role: string;
+  region: string;
+  bio: string;
+  lookingForTeammate: boolean;
+  lastActive: string;
+  matchScore?: number; // Added optional matchScore property
+}
+
 // Sample mock player data
-const MOCK_PLAYERS = [
+const MOCK_PLAYERS: Player[] = [
   {
     id: '1',
     gamerTag: 'NeonBlade',
@@ -80,8 +94,8 @@ const REGIONS = ['All Regions', 'NA', 'EU', 'ASIA', 'OCE', 'LATAM', 'BR'];
 interface PlayersProps {}
 
 const Players = ({}: PlayersProps) => {
-  const [players, setPlayers] = useState(MOCK_PLAYERS);
-  const [filteredPlayers, setFilteredPlayers] = useState(MOCK_PLAYERS);
+  const [players, setPlayers] = useState<Player[]>(MOCK_PLAYERS);
+  const [filteredPlayers, setFilteredPlayers] = useState<Player[]>(MOCK_PLAYERS);
   const [loading, setLoading] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   
@@ -95,7 +109,7 @@ const Players = ({}: PlayersProps) => {
   const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
   
   // Calculate match score between current user and another player
-  const calculateMatchScore = (player: typeof MOCK_PLAYERS[0]) => {
+  const calculateMatchScore = (player: Player) => {
     if (player.id === currentUser.id) return 0;
     if (player.game !== currentUser.game) return 0;
     
