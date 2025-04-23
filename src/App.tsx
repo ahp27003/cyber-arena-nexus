@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -54,6 +55,14 @@ const App = () => (
             <Route path="messages/:id" element={<Messages />} />
             <Route path="settings" element={<Settings />} />
           </Route>
+          
+          {/* Legacy Routes - Redirect to new structure */}
+          <Route path="/profile" element={<Navigate to="/app/profile" replace />} />
+          <Route path="/profile/setup" element={<Navigate to="/app/profile/setup" replace />} />
+          <Route path="/players" element={<Navigate to="/app/players" replace />} />
+          <Route path="/messages" element={<Navigate to="/app/messages" replace />} />
+          <Route path="/messages/:id" element={<Navigate to="/app/messages/:id" replace />} />
+          <Route path="/settings" element={<Navigate to="/app/settings" replace />} />
           
           {/* Catch-All */}
           <Route path="*" element={<NotFound />} />
