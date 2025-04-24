@@ -2,17 +2,9 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/ca35aa26-c2c4-4f9b-bb2e-2a1e53569a12
-
 ## How can I edit this code?
 
 There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/ca35aa26-c2c4-4f9b-bb2e-2a1e53569a12) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
@@ -62,10 +54,7 @@ This project is built with:
 
 ## How can I deploy this project?
 
-### Option 1: Deploy with Lovable
-Simply open [Lovable](https://lovable.dev/projects/ca35aa26-c2c4-4f9b-bb2e-2a1e53569a12) and click on Share -> Publish.
-
-### Option 2: Deploy to Render.com
+### Option 1: Deploy to Render.com
 This project has been configured for deployment on Render.com:
 
 1. Create a new account or log in to your existing Render account
@@ -82,5 +71,3 @@ The application includes a `render.yaml` configuration file that will automatica
 Yes, you can!
 
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
